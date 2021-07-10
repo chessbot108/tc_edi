@@ -1,0 +1,25 @@
+The important thing here is that the depth of a randomly generatred tree is around O(logn). Of course a modtree is not completely random, but with exhaustive search, you can see that the depth will not exceed 40 (37 at most). So lets call the cnt array an array that stores the frequencies of depths from a certain root. To transition from cnt[par[u]] to cnt[u] (where par[u] is the parent) you do not have to recompute the whole tree with a new root. Instead you can run a dfs/bfs and recompute the answer for only the nodes within u's subtree. There is a little bit of casework involved so I will explain that next.
+
+
+so lets say cnt[i][j] stores the amount of nodes that are depth j away from node i.
+lets also define temp[i][j] as the amount of nodes in i's subtree that are distance j away from i
+
+for some depth d and some node u
+cnt[u][d] = cnt[par[u]][d-1] + temp[u][d] - temp[u][d-2]
+
+the amount of nodes distance d away from node u is: (amount of nodes distance d-1 from parent) - (amount of nodes d-2 away from node u (if d <= 1, this value is 0)) + (amount of nodes distance d away from node u). The sums of the first and second terms count for the nodes that are distance d-2 from u that are not in u's subtree (draw it out if you have trouble understanding). So now lets define dep[u] as the furthest distance any node in u's subtree is to u. The important part is that to transition fron par[u] to u you only have to compute dep[u] many values. Consider you broke the tree into 2 parts, the amount of nodes dep[u] distance from u (in or not in the subtree) and the amount more than that. For any distance <= dep[u] we can use the above formula but for any distance > dep[u] we can just use the parents answer for dep[u]-1. Since the answer for that distance could not have changed by recomputing the subtree of u. Of course there is some casework concerning that but the general idea is the same.
+
+So the algorithm itself will look something like this. Compute cnt[1] and store it in cnt. Then the goal is that at any point in the dfs, cnt pertains to the node that the dfs is currently on.
+
+so at any step in the dfs
+
+1. store the first dep[u] terms of the cnt array since you will overwrite it
+2. compute temp[u] for all nodes in the subtree
+3. recompute cnt with the above formula for the first dep[u] terms
+4. find the max of the first dep[u] terms and account for that in the answer
+5. dfs to children
+6. restore the cnt array to what it was before the dfs so that the next child of the parent will be fine
+
+This takes a total of O(sum of subtree sizes). Here is where the fact that height of the tree is small will come in handy. So imagine if you were to make an euler tour of the tree and store the left and right ends of each node's subtree. The sum of all nodes with the same depth will be n and there are a total of 40~ layers. So the end time and memory complexity is O(n * max node depth from the oot) or O(n*40) for a modtree. 
+
+Note that there is a solution for a general tree in better than O(n^2). The problem reduces to finding the mode of the array with updates. This can be done in O(n^(5/3)) or so with Mo's with updates. Since no one on the team wanted to impl Mo's, we decided to use a modtree instead.

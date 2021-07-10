@@ -1,0 +1,4 @@
+d, the number of dimension, (1 <= d <= 60)
+k, the powre at which distance is evaluated, (1 <= k <= 500)
+Di, the maximum value in array D, (1 <= Di <= 1e9)
+T, the number of tests in the multitest, (1 <= T <= 10)

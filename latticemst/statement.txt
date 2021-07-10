@@ -1,0 +1,31 @@
+Chessbot had a problem of finding the maximum spanning tree of a 2d lattice grid where the distance between two nodes is the Euclidean distance squared (for precision issues). PurpleCrayon decided this problem wasn’t hard enough and decided to make it a d-dimensional lattice grid where the distance between two points p1 and p2 where each point is represented as a tuple length d, sigma(i=1, d) abs(p1[i] - p2[i])^k, where d and k are given as input. So the question is given a d-dimensional lattice grid (with the i'th dimension being D[i]) and k, find the maximum spanning tree of the graph where there is an edge between all points of the lattice equivalent to the distance formula described above.
+
+Input:
+You will answer T testcases (T <= 10). Each testcase consists of 2 lines. The first line is two integers d (2 <= d <= 60) and k (1 <= k <= 500). The following line consists of d integers, which describes the dimensions of the d-dimensional lattice (D[i] <= 1e9).
+
+Output:
+The i'th is one integer for the i'th testcase ans[i] which is the maximum spanning tree of the lattice grid inputted.
+
+Sample input:
+
+3
+2 2 
+2 2
+3 2 
+2 2 2
+4 20
+6 9 96 66
+
+Sample output:
+
+5
+18
+742488253
+
+Explanation:
+
+For the first testcase, you could draw edges between: (1, 1) and (2, 2) with weight 2 (1^2 + 1^2), (1, 2) and (2, 1) with weight 2 (1^2 + 1^2), (1, 1) and (2, 1) with weight 1 (1^2 + 0^2) summing up to 5.
+
+For the second testcase, edges are between (1, 1, 1) -> (2, 2, 2); (1, 1, 1) -> (2, 2, 1), (1, 1, 1) -> (2, 1, 2), (1, 1, 1,) -> (1, 2, 2), (1, 2, 1) -> (2, 1, 2), (2, 1, 1,) -> (1, 2, 2), (1, 1, 2) -> (2, 2, 1) with a total sum of 4*(1^2 + 1^2 + 1^2) + 3*(1^2 + 1^2 + 0^2).
+
+Due to the difficulty of drawing a 6x9x96x66 4 dimension lattice grid on a 2d screen, an explanation is omitted.

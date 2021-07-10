@@ -1,0 +1,1 @@
+It will always to optimal to draw a straight line along one of the edges from point (1, 1). So you will go to either (1, m) or (n, 1). So the first number will always be max(n, m). The second number will be 1 if n != m and 3 if n == m, 1 since there will only be 1 longest edge and 3 since you can draw from (1, n) (n, 1) or (n, n). Complexity O(1) per testcase.

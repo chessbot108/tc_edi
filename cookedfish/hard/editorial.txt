@@ -1,0 +1,28 @@
+The editorial for this problem is split into 3 cases: k = 1, k = 2, k >= 3. Note that if k is > log2(n), itll be too large to fit any power of something > 1 into n but there is an edge case for n=1.
+
+So in the editorial I will adress the answer as sum of powers of k [a, b) and i = b - a.
+
+For k >= 3, you can see that 1e16^(1/3) is ~2.2e5. For any value > 2.2e5, that value ^3 will already be greater than 1e16. Now the problem just becomes, given an array of size n^(1/k) (where each element is i^k), find any subarray such that the sum is equal to n. This can be done with a simple two pointers in O(n), which is 2.2e5 computations for k=3 and even less for any larger power of k. This givens us an O(n^(1/k)) sol for k >= 3.
+
+For k <= 2, n^(1/k) will tle, so we will describe the following cases.
+
+For k=1, if n is a power of 2, there is no solution, otherwise lets use the following observations.
+
+(b - a) * (a + (b - 1)) = 2*n;
+
+its like guass's thing, where ((a + 0) + (b - 1)) + ((a + 1) + (b - 2)) ... ((a + (b - a - 1)) + (b + 0)) where you see each number from [a, b) appear once. Now we have to find any two factors (b - a) and (a + (b - 1)) that multiply to 2*n. Since the difference between the two is 2*a -1, one of the two (b - a) or (a + b - 1) has to be odd and the other even. Now lets define y as the largest power of two that evenly divides n*2, this value will be between 2 and n/2 since we know n isnt a power of two. Lets also define z is (n/(y/2)). Now we have that abs(y - z) = 2*a -1. We also have max(z, y) = a + b - 1. So once we have y and z, we can solve for a with the first equation, and do max(z, y) - a + 1 = b. This gives us a O(1) or O(logn) sol for k=1 depending on the implementation.
+
+Thanks to codicon for this idea.
+
+Finally for k=2, it gets a little scuffed. So consider the sum of (a)^2 + (a + 1)^2 + (a + 2)^2 ... (a + i - 1)^2. Expanding the terms would give:
+a^2 + 2*0*a + 0^2
+a^2 + 2*1*a + 1^2
+...
+a^2 + 2*(i-1)*a + (i-1)^2
+
+This would come to i*a^2 + 2*a*sum of[0, i) + sum of squares[0, i). Here we want a way to find a relative to i. Lets say S(i) is the sum of [0, i) and F(i) is sum of squares from [1, i). So we have i*a^2 + 2*S(i)*a + F(i) == n, if sum of squares from [a, a+1) is equal to n. Then we subtract n from both sides, and we have a quadratic in the form of i*(a^2) + (2 * S(i))*(a) + (F(i) - X) == 0. We can now use the quadratic formula (or any other method, the quadratic formula is the easiest to implement I think) to solve for a. So now
+a = ((-2*S(i)) + sqrt((2*S(i))^2 - (4)(i)(F(i) - n)))/(2*i). 
+If this value is an integer, we have a, and we can make b a+i, and we have a working solution.
+Now we need a to be positive. So we have -(2*S(i)) outside of the sqrt and (2*S(i))^2 inside the sqrt. So we need (4)(i)(F(i) - n) to be >= 0 or else the -(2*S(i)) will be more than what the sqrt evaluates to and a becomes negative. So there is nothing we can do about making the 4 or the i negative (or 0) but we can see that if F(i) > n, then the whole 4*i*(F(i) - n) will be positive and a will be negative. So it suffices to check all i sum that F(i) <= n. Since the function for sums of squares grows in cubic time, we only have to evaluate O(cbrt(n)) values. Each value can be checked in O(logn) since taking sqrt of large numbers is painful. The model solution runs in O(cbrt(n) * logn) which should be enough to fit within the time limit. 
+
+The ending complexity O(cbrtn*logn) since k=2 is the one that takes the most time of all of them.

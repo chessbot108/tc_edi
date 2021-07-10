@@ -1,0 +1,1 @@
+There is a solution for the equation p=np if n = 1 or p = 0. So there are (n + 1) pairs of (N, P) when p = 1 and (p + 1) pairs of n = 1. The extra +1 is since there are n+1 numbers between [0, n]. There is also overcount for the pair n=1, p=0, so the ending answer will be ((n + 1) + (p + 1) - 1) or just (n + p - 1). Complexity: O(1).
