@@ -1,4 +1,4 @@
-This is the hard version of the problem. The difference between the easy and hard versions is that for this problem (the easy version) k will be <= n.
+This is the hard version of the problem. The difference between the easy and hard versions is that for this problem (the easy version) k will be <= n AND n will be <= 1e16 as opposed to 1e9 in the easy version.
 
 Peach has finally taken Goma out to eat fried fish. There are an infinite amount of fish in the restaurant they are at. They are lined up in a way such that the i'th fish from the entrance has flavor i^k. In other words, the fishes have flavor 1^k, 2^k, 3^k, 4^k, ... to infinity. So when eating, Peach will pick a starting point and an ending point and eat all the fishes from the starting point to the ending point (EXCLUDING THE ENDING POINT). The total flavor of those fishes will be the sum of the flavor of each individual fish, so if the starting point is 4 and the ending point is 6 (with k = 1), the total flavor is 9 (excluding endpoint), if k was equal to 3, it would be 4^3 + 5^3 or 189. They will visit the restaurant for the next Q days would like to eat a total flavor of n[i] on day i and would like you to find any pair of starting and ending points such that the total flavor is n[i]. Due to the fact they do not want to walk that far before eating, the ending point must be <= n.
 
@@ -7,7 +7,7 @@ More formally, you will have to answer Q queries with each query being a number 
 
 Input:
 
-The first line will be one integer Q, the number of queries (1 <= Q <= 10) followed by Q lines of 2 integers on the i'th line, n[i] (1 <= n <= 1e9) the total flavor of fish they want to eat on the i'th day and k[i] (1 <= k <= n), the k used to evaluate flavors on the i'th day. 
+The first line will be one integer Q, the number of queries (1 <= Q <= 10) followed by Q lines of 2 integers on the i'th line, n[i] (1 <= n <= 1e16) the total flavor of fish they want to eat on the i'th day and k[i] (1 <= k <= n), the k used to evaluate flavors on the i'th day. 
 
 Output
 

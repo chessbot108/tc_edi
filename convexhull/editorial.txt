@@ -1,0 +1,33 @@
+The key observation is to find that the convex hull of N uniformly and randomly generated pointed points is around N^(1/3). This can either be found be [googling](link stackoverflow article) or by stresstesting :D. PurpleCrayon brought this to the team to make a problem idea since that wasn't suited for CF or USACO which Purple actually cares to set problems for. So despite chessbot refering to himself as the setter in the statement, PurpleCrayon is also a setter of this problem. 
+
+ch -> convex hull. I will be using that word a lot and this is easier to type :D. Unless otherwise specified the ch is a set of points not the area.
+
+Let's define a ring. A ring is defined as the convex hull of some set of points. The i'th ring of an array of points is defined as the ring of the array after all of the points contained in the 1~i-1 rings are removed from the array. Also like the ch, a ring is also a set of points.
+
+Now also, it is important to know that if I have a convex polygon, then some point strictly outside of the polygon, the convex hull of all of the points will have an area strictly greater than just the polygon itself. Also note adding any positive amount of points outside of that polygon will increase the size of the convex hull. If the set of points that were the convex hull of the original polygon was S, adding more points outside of the polygon will make the convex hull contain of points only from S and the added points. This has similar reasoning to the area property described above.
+
+So lets say that queries are split into 4 cases.
+
+Note that when I say ring, I mean the ring of the entire array.
+
+
+Case 1: a and b are both not on the first ring (or the ch of the entire array).
+Just precompute the ch of the entire array and output it, since a and b will not contribute to the answer.
+
+Case 2: a and b are both on the first ring.
+I claim that the ch of the remaing points will only consist of points from the first and second rings. Consider if I removed all of the points of the first list, then found the ch of the remaing points. The new ch will just be the second ring. Now if I add all the points from the first ring that are not a and b, then by the property of adding points, the convex hull will only contain points from the second ring (original polygon) and the first ring (the added points). So by this, my claim is correct.
+
+Case 3: WLOG a is on the first ring and b is on the second ring.
+I claim that the ch of the remaing points will only use points from the first 3 rings. The reasoning is similar to case 2. I remove the first and second rings, then I find the ch (the third ring), and I add back points from the first and second rings exluding a and b. The end result is a ch with points only from the third ring (the original polygon) and the first/second rings (the added points).
+
+Case 4: everything else, or WLOG a is on the first ring and b is not on the first/second rings. 
+This is similar to case 2. Since b is not on the first/second rings, removing point a does not give b a chance to contribute to the ch. 
+
+So the end result is, across all queries, you can precompute all of the relevant answers. You first find the first three rings and store them. The big runtime saver is that finding the convex hull with any two points removed will only need you to use the first trhee rings and the fact that the ch of N randomly generated points is about N^(1/3). You can now store the relevant points in a list around 3*n^(1/3) in length and finding the ch will take O(n^(1/3)log(n^(1/3))) time. note O(log(n)) == O(log(n^(1/3))), proof is an exercise to the reader, (if you give up check out dijkstra/prim/kruskal runtime, it's similar, O(log(V)) == O(log(E))).
+
+1. the ch of the entire array and also the first three rings, O(nlogn) 
+2. the ch of the entire array with any point from the first ring removed, O(n^(1/3) * (n^(1/3))log(n)). n^(1/3) points on the first ring, and n^(1/3)log(n) time to find the ch.
+3. for all possible ways to pick to points on the first 2 rings, find the ch of the first trhee rings with those removed, O(n^(2/3) * n^(1/3) * log(n)).
+
+The total complexity is basically O(nlogn +q).
+
