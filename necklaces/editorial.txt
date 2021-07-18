@@ -1,38 +1,3 @@
 One solution is to use sets. Keep a set containing where each component begins, and a set containing where each component ends. When quering for a node, simply find the closest start point and end point use lower/upper bound. Also note we store the beginning indices as negative values to query for highest index lower than a value in the set. Because updating and querying on a set is logN the total complexity is NlogN.
 
 You can actually get linear by using disjoint set, answering the queries offline by adding edges instead of substract them. Then you store the beginning and ending index of the component each node is in. You can then get O(Ninv_ack) which is essential linear.
-
-#include <iostream>
-#include <fstream>
-#include <set>
-#include <algorithm>
-using namespace std;
-#define MAXN 100001
-
-int main() {
-	ifstream cin("LinkedList.txt");
-	
-	int N, M;
-	cin >> N >> M;
-
-	set<int> b;
-	set<int> e;
-	b.insert(0);
-	e.insert(N);
-	for (int i = 0; i < M; i++)
-	{
-		char c;
-		int a;
-		cin >> c >> a;
-
-		if (c == 'R')
-		{
-			b.insert(-a);
-			e.insert(a);
-		}
-
-		if (c == 'Q')
-			cout << *e.upper_bound(a - 1) + *b.lower_bound(-a + 1) << "\n";
-	}
-	return 0;
-}
