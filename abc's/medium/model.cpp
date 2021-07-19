@@ -11,42 +11,6 @@
 using namespace std;
 #define MAXN 100001
 
-//cant switch cards, must choose only one to play O(N) very easy
-/*
-int main() {
-	for (int t = 1; t <= 10; t++)
-	{
-		ofstream cout(to_string(t) + ".out");
-		ifstream cin(to_string(t) + ".in");
-
-		int N;
-		cin >> N;
-
-		string s;
-		cin >> s;
-
-		int a = 0, b = 0, c = 0;
-		int ansa = 0, ansb = 0, ansc = 0;
-		for (int i = 0; i < N; i++)
-		{
-			if (s[i] == 'A') a++;
-			if (s[i] == 'B') b++;
-			if (s[i] == 'C') c++;
-
-			int max_used = max(max(a, b), c);
-
-			if (a == max_used) ansa++;
-			if (b == max_used) ansb++;
-			if (c == max_used) ansc++;
-		}
-
-		cout << max(max(ansa, ansb), ansc) << "\n";
-	}
-	return 0;
-}
-*/
-
-
 //can switch, but only after K consecutive same card I only know O(N*K) but there is prob a better alg medium/hard
 
 int dp[MAXN][3]; //max points if ends in letter j at index i
