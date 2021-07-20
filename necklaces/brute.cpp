@@ -24,15 +24,16 @@ int main() {
 		cin >> c >> a;
 
 		if (c == 'R')
-			cut[c] = true;
+			cut[a] = true;
 
 		if (c == 'Q')
 		{
 			int ans = 0;
-			int n = c;
+			int n = a - 1;
 			while (n > 0 && !cut[n--]) ans++;
-			n = c;
+			n = a;
 			while (n < N && !cut[n++]) ans++;
+         	cout << ans + 1 << "\n";
 		}
 	}
 	return 0;
