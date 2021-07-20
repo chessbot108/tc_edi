@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <string>
 using namespace std;
-#define MAXN 100001
+#define MAXN 400001
 bool cut[MAXN]; //there is a cut between bead i and i+1
 
 //simplest verison, only calc num elements in link, NlogN cuz sets, could be O(n*inv_ack) dsu easy
