@@ -67,30 +67,28 @@ int main(){
 	int T, k;
 	cin >> T >> k;
 	//T = 1000;
+	int t = T;
 	ll tot = 0, tot1 = 0, cbrt = 0;
 	while(T--){
 		int n;
 		n = k;
 		//cin >> n;
-		multiset<pair<int, int>> ms;
-		cbrt = 0;
-		while(cbrt*cbrt*cbrt < n) cbrt++;
+		ll a, b, c, d;
+		a = uid(1, 1e9), b = uid(1, 1e9);
+		c = uid(1, 1e9), d = uid(1, 1e9);
 		vector<pt> ve;
 		for(int i = 0; i<n; i++){
-			int a, b;
-			//cin >> a >> b;
-			a = uid(1, 1e9), b = uid(1, 1e9);
-			while(ms.count(mp(a, b))){
-				a = uid(1, 1e9), b = uid(1, 1e9);
-			}
-			ve.pb({a, b});
+			ll x = a*c %(ll)1e9;
+			ll y = b*d %(ll)1e9;
+			ve.pb({x, y});
+			a = x, b = y;
 		}
 		convex_hull(ve);
 		tot += (int)(ve.size());
 		tot1 += cbrt;
 		//cout << ve.size() << " " << cbrt << "\n";
 	}
-	lb ra = (lb)tot/(lb)tot1;
-	cout << tot << " " << tot1 << fixed << setprecision(6) << " " << ra << "\n";
+	lb ra = (lb)tot/(lb)tot1, ra1 = (lb)tot/(lb)t;
+	cout << tot << " " << tot1 << fixed << setprecision(6) << " " << ra << " " << ra1 << "\n";
 	return 0;
 }
