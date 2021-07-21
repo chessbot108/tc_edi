@@ -2,14 +2,14 @@ Cameron is a cashier for a store and at the end of the day, Cameron wrote down t
 
 Input: 
 
-The first line has an integer 1 < N < 1000, representing the number of customers throughout the day.
-The second line has N space-separated integers, 1 < K < 100, where K represents each space-separated integer.
+The first line has an integer N (1 <= N <= 1000), representing the number of customers throughout the day.
+The second line has N space-separated integers, arr[i] representing the amount of money the i'th customer brought (1 <= arr[i] <= N).
 
 Output: 
 
 Print the mean, median, and mode of the list of numbers in that order, each on a separate line.
 
-It is guaranteed that the mean, median, and mode of the list are all integer.
+It is guaranteed that the mean, median, and mode of the list are all integers.
 
 Sample Input:
 
