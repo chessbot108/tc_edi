@@ -5,6 +5,7 @@
 #include <vector>
 #include <random>
 #include <map>
+#include <set>
 #include <chrono>
 using namespace std;
 #define MAXN 1000
@@ -14,6 +15,7 @@ using namespace std;
 #define pii pair<int, int>
 map<pii, int> r, group;
 map<pii, pii> par;
+set<pii> taken;
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
 pii find(pii n)
@@ -70,19 +72,50 @@ int main() {
 		{
 			N = rand(700, MAXN);
 			M = rand(700, MAXN);
-			K = rand(40000, N*M - 9000);
+			K = rand(40000, min(N*M - 15000, MAXK));
 		}
 
 		vector<pair<int, int> > tel_in, tel_out;
 		if (i != 1)
 		{
 			test_data += to_string(N) + " " + to_string(M) + " " + to_string(K) + "\n";
+
+			int cx = 0;
+			int cy = 0;
+			taken.insert({ cx, cy });
+			//create a path
+			for (int i = 0; i < M / 2; i++)
+			{
+				cy++;
+				taken.insert({ cx, cy });
+			}
+			for (int i = 0; i < N / 2; i++)
+			{
+				cx++;
+				taken.insert({ cx, cy });
+			}
+			while (cy > 0)
+			{
+				cy--;
+				taken.insert({ cx, cy });
+			}
+			while (cx < N - 1)
+			{
+				cx++;
+				taken.insert({ cx, cy });
+			}
+			while (cy < M - 1)
+			{
+				cy++;
+				taken.insert({ cx, cy });
+			}
+
 			for (int i = 0; i < N; i++)
 			{
 				for (int j = 0; j < M; j++)
 				{
 					group[{ i, j }] = MAXN * i + j;
-					if ((i == 0 && j == 0) || (i == N - 1 && j == M - 1))
+					if (taken.count(make_pair(i, j)))
 					{
 						test_data += ".";
 						tel_out.push_back({ i + 1, j + 1});
@@ -103,12 +136,12 @@ int main() {
 			for (int i = 0; i < K; i++)
 			{
 				test_data += to_string(tel_in[i].first) + " " + to_string(tel_out[i].second) + " "; //tel start
-				if (i < K / 4)
+				if (i < K / 2)
 				{
 					test_data += to_string(tel_in[i + 1].first) + " " + to_string(tel_out[i + 1].second) + "\n";
 					merge(tel_in[i], tel_in[i + 1]);
 				}
-				else if (i < K / 4 + rand(3, 7))
+				else if (i < K / 2 + rand(3, 7))
 					test_data += to_string(N) + " " + to_string(M) + "\n";
 				else
 				{
