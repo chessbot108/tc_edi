@@ -28,7 +28,6 @@ const int MX = 2e5 +10, int_max = 0x3f3f3f3f;
 
 using namespace std;
 
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 typedef pair<int, int> pii;
 
 char inp[20];
@@ -122,10 +121,13 @@ void print(vector<int> a, string b){
 
 int main(){
   cin.tie(0) -> sync_with_stdio(0);
-	int n, q, d, t;
+	int n, q, d, t, s;
 	int p1, p2, p3, p4;
-	cin >> t >> n >> q >> d;
-	cin >> p1 >> p2 >> p3 >> p4; 
+	
+	cin >> t >> s >> n >> q >> d;
+	cin >> p1 >> p2 >> p3 >> p4; 	
+	
+	mt19937_64 rng(s);
 	sprintf(inp, "%d.in", t);
 	freopen(inp, "w", stdout);
 	cout << n << " " << q << "\n"; //5e5
