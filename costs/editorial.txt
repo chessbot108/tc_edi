@@ -1,0 +1,3 @@
+We need to find the mean, median, and mode of the list of numbers. The mean is the average of all the numbers, meaning that we need to find the sum of the list of numbers, then divide it by the number of numbers in the list. To find the median, we first have to sort the array, and if there is an odd number of numbers in the list, then we find the middle number, and if it there is an even number of numbers in the list, then we find the average of the two middle numbers. To find the mode, we count how much each number occurred in the list, then find the number that occurred the most. After we find the mean, median, and mode, we print them out, all in separate lines.
+
+Total complexity, O(nlogn) to sort or O(n) if you're smart about it.

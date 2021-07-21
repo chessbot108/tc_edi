@@ -1,0 +1,31 @@
+Cameron is a cashier for a store and at the end of the day, Cameron wrote down the money he got from each customer throughout the day. His manager wants the mean, median, and mode of the list of money from each customer. If there are multiple modes, output the smallest one. 
+
+Input: 
+
+The first line has an integer 1 < N < 1000, representing the number of customers throughout the day.
+The second line has N space-separated integers, 1 < K < 100, where K represents each space-separated integer.
+
+Output: 
+
+Print the mean, median, and mode of the list of numbers in that order, each on a separate line.
+
+It is guaranteed that the mean, median, and mode of the list are all integer.
+
+Sample Input:
+
+5
+3 7 5 18 7
+
+Sample Output:
+
+
+8
+7
+7
+
+Explanation: 
+
+The sum of the array is 40, then divided by 5, the mean (average) is 8.
+The array sorted is {3, 5, 7, 7, 18}. Since the number of elements is odd, taking the "middle" element gives us 7 as the median.
+The most frequent number in the array is 7, appearing twice.
+
