@@ -66,7 +66,7 @@ int main() {
 			int ax, ay, bx, by;
 			cin >> ax >> ay >> bx >> by;
 
-			par[{--ax, --ay}] = par[{ --bx, --by }];
+			merge({--ax, --ay}, { --bx, --by });
 		}
 
 		queue<pair<int, int> > q;
