@@ -26,77 +26,54 @@ pair<int, int> find(pair<int, int> p)
 	return par[p] = (par[p] == p ? p : find(par[p]));
 }
 
-void merge(pair<int, int> a, pair<int, int> b)
-{
-	a = find(a);
-	b = find(b);
-	if (r[a] > r[b])
-		par[b] = a;
-	else if (r[b] > r[a])
-		par[a] = b;
-	else
-	{
-		par[a] = b;
-		r[b]++;
-	}
-}
-
 int main() {
-	for (int t = 1; t <= 10; t++)
+	int N, M, K;
+	cin >> N >> M >> K;
+
+	for (int i = 0; i < N; i++)
+		cin >> grid[i];
+
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < M; j++)
+			par[{i, j}] = { i, j };
+
+	for (int i = 0; i < K; i++)
 	{
-		ofstream cout(to_string(t) + ".out");
-		ifstream cin(to_string(t) + ".in");
-		par.clear();
-		r.clear();
-		memset(vis, false, sizeof vis);
-		memset(ans, 0, sizeof ans);
+		int ax, ay, bx, by;
+		cin >> ax >> ay >> bx >> by;
 
-		int N, M, K;
-		cin >> N >> M >> K;
+		par[{--ax, --ay}] = par[{ --bx, --by }];
+	}
+		
+	for (auto p : par)
+		find(p.first);
 
-		for (int i = 0; i < N; i++)
-			cin >> grid[i];
+	queue<pair<int, int> > q;
+	q.push({ 0, 0 });
+	ans[0][0] = 0;
+	vis[0][0] = true;
+	while (q.size())
+	{
+		pair<int, int> curr = q.front();
+		q.pop();
+		vis[curr.first][curr.second] = true;
 
-		for (int i = 0; i < N; i++)
-			for (int j = 0; j < M; j++)
-				par[{i, j}] = { i, j };
-
-		for (int i = 0; i < K; i++)
+		for (int d = 0; d < 4; d++)
 		{
-			int ax, ay, bx, by;
-			cin >> ax >> ay >> bx >> by;
+			int newx = curr.first + dx[d];
+			int newy = curr.second + dy[d];
 
-			merge({--ax, --ay}, { --bx, --by });
-		}
-
-		queue<pair<int, int> > q;
-		q.push({ 0, 0 });
-		ans[0][0] = 0;
-		vis[0][0] = true;
-
-		while (q.size())
-		{
-			pair<int, int> curr = q.front();
-			q.pop();
-
-			for (int d = 0; d < 4; d++)
+			pair<int, int> end_pair = find({ newx, newy });
+			if (newx >= 0 && newx < N && newy >= 0 && newy < M && grid[newx][newy] != '#' && !vis[end_pair.first][end_pair.second])
 			{
-				int newx = curr.first + dx[d];
-				int newy = curr.second + dy[d];
+				vis[end_pair.first][end_pair.second] = true;
 
-				if (newx >= 0 && newx < N && newy >= 0 && newy < M && !vis[newx][newy] && grid[newx][newy] != '#')
-				{
-					pair<int, int> end_pair = find({ newx, newy });
-					vis[end_pair.first][end_pair.second] = true;
-					vis[newx][newy] = true;
-
-					q.push(end_pair);
-					ans[end_pair.first][end_pair.second] = ans[curr.first][curr.second] + 1;
-				}
+				q.push(end_pair);
+				ans[end_pair.first][end_pair.second] = ans[curr.first][curr.second] + 1;
 			}
 		}
-
-		cout << ans[N - 1][M - 1] << "\n";
 	}
+
+	cout << ans[N - 1][M - 1] << "\n";
 	return 0;
 }
