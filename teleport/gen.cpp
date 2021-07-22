@@ -9,7 +9,7 @@
 #include <chrono>
 using namespace std;
 #define MAXN 1000
-#define MAXK 100000
+#define MAXK 50000
 #define NUM_CASES 10
 #define WALL_PROB 10 //out of 100
 #define pii pair<int, int>
