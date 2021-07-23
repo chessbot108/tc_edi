@@ -44,18 +44,26 @@ const int MX = 2e5 +10, int_max = 0x3f3f3f3f;
 using namespace std;
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-char inp[20];
-
+int is_prime(int x){
+	for(int i = 2; i*i <=x; i++){
+		if(x%i == 0) return 0;
+	}
+	return 1;
+}	
 int main(){
   cin.tie(0) -> sync_with_stdio(0);
-	int t, T = 10, a, b, f; cin >> t;
+	int t; cin >> t;
+	char inp[20], oup[20];
 	sprintf(inp, "%d.in", t);
-	cin >> a >> b >> f;
-	freopen(inp, "w", stdout);
-	cout << T << "\n";
-	for(int i = 0; i<T; i++){
-		if(f) cout << uid(a, b)  << " 1\n";
-		else cout << a+i << " 1\n";
+	sprintf(oup, "%d.out", t);
+	FILE * I = fopen(inp, "w");
+	int T; T = 10;
+	fprintf(I, "%d\n", T);
+	while(T--){
+		int p = uid(1, 2);
+		int a = uid(1, 1e3/p);
+		while(!is_prime(a)){a++;}
+		fprintf(I, "%d %d\n", a*(1 << p), 1);
 	}
   return 0;
 }

@@ -7,8 +7,8 @@ int main(){
 	cin.tie(0)->sync_with_stdio(0);
 	int T; cin >> T;
 	while(T--){
-		int X, k; cin >> X >> k;
-		assert(k == 1);
+		int X, temp; cin >> X >> temp;
+		assert(temp == 1);
 		int a = -1, b = -1, found = 0; 
 		for(int k = 1; k<=MX; k++){ //for all X, the length no exceed sqrt(2*X), or sqrt(2e9)
 			int s = ((k * (k - 1))/2);
