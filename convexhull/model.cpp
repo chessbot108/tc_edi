@@ -170,7 +170,7 @@ int main(){
 		}else{
 			int e = binary_search(all(sring), b);
 			if(c && (d || e)){ 
-				//a is on the first ring and e is on the first/second ring
+				//a is on the first ring and b is on the first/second ring
 				cout << m[mp(a, b)] << "\n";
 			}else{
 				//a is on the first ring and b is further in
