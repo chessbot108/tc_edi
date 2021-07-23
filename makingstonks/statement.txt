@@ -1,0 +1,4 @@
+As we all know, PurpleCrayon has already obtained the proof for P=NP, but it turns out the reason he hasn’t claimed his $1000000 prize was since the value of the prize increases over time! So there are N donors, and donor ‘i’ will start donating at year d[i] after PurpleCrayon was born (and of course PurpleCrayon had the proof for P=NP the moment he was born). A donor will start donating $1 at year d[i] and will donate at any year that is multiple of d[i]. If PurpleCrayon collects the prize at year i, he will get the original $1000000 prize and all donations from the year he was born and including the year he took the prize on. So if a donor donates every 2 years, and Purple collects on year 2, he will get 1 dollar above his 1000000$ prize. Given the list of donors, find how long it will take PurpleCrayon to gain X dollars above the original $1000000 limit (0 <= X <= 1e12).
+
+
+
