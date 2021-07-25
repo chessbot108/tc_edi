@@ -42,7 +42,7 @@ const ll mod = 1e9 + 7, ll_max = (ll)1e18;
 const int MX = 2e5 +10, int_max = 0x3f3f3f3f;
 
 using namespace std;
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+mt19937_64 rng(420);
 
 int main(){
   cin.tie(0) -> sync_with_stdio(0);
@@ -50,10 +50,10 @@ int main(){
 	int T = 10; moo("%d\n", T);
 
 	while(T--){
-		int d = 60, k = 500;
+		int d = 5, k = 5;
 		moo("%d %d\n", d, k);
 		for(int i = 0; i<d; i++){
-			moo("%d ", (int)(1e9));
+			moo("%d ", (int)uid(1, 5));
 		}	
 		mool;
 	}

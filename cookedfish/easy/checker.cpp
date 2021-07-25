@@ -3,7 +3,7 @@
 #define AC 0
 #define WA 1
 #define ERROR -1
-
+#define ll long long
 int spj(FILE *input, FILE *user_output){
     /*
       parameter: 
@@ -21,7 +21,7 @@ int spj(FILE *input, FILE *user_output){
 		//2. sigma [a, b) is not X, WA
 		int T, flag = AC;
 		fscanf(input, "%d", &T);
-		for(int t = 0; i<T; t++){
+		for(int t = 0; t<T; t++){
 			int X = -1, a = -1, b = -1, k;
 			
 			fscanf(input, "%d%d", &X, &k);
@@ -30,7 +30,7 @@ int spj(FILE *input, FILE *user_output){
 			if(X&(X-1)){ //X is not a power of two, there should be a sol
 				if(!(1 <= a && (a < b) && (b <= (int)X))) flag = WA;
 				ll ans = 0;
-				for(int i = a; i<b; i++){
+				for(int i = a; i<b && ans <= X; i++){
 					ans += (ll)i;
 				}
 				if(ans != (ll)X) flag = WA;

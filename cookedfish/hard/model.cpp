@@ -131,8 +131,6 @@ void k_3(){ //for all cases k >= 3
 
 int main(){
   cin.tie(0) -> sync_with_stdio(0);
-	freopen("in.txt", "r", stdin);
-	freopen("out.txt", "w", stdout);
 	cin >> T;
 	while(T--){
 		cin >> n >> k;

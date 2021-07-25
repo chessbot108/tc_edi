@@ -26,7 +26,7 @@ Sample Output:
 
 Explanation:
 
-The input points look something like a 4x4 grid with corners at (1, 1), (1, 5), (5, 5) and (5, 1) with one point at the center, (3, 3). 
+The input points look something like a 4x4 grid with corners at (1, 1), (1, 5), (5, 5), and (5, 1) with one point at the center, (3, 3). 
 In the first query, we are removing points (1, 1) and (1, 5). The remaining points, (1, 5), (3, 3), and (5, 5) make up a triangle that is 45-45-90 and has side lengths 2*sqrt(2), 2*sqrt(2), 4. The area is ((2*sqrt(2)) * (2*sqrt(2)))/2, which is 4 (proof is left as an exercise to the reader). Then multiply the area by 2 and the answer is 8.
 In the second query we are removing points (5, 5) and (3, 3), leaving us with (1, 1), (1, 5), and (5, 1). This also gives us a 45-45-90 triangle but with side lengths 4, 4, 4*sqrt(2). The area of the figure (or the convex hull of the figure, they are the same in this case) is (((4) * (4))/2) or 8. Multiply that by two to get 16.
 
