@@ -10,12 +10,16 @@
 #include <string>
 #include <map>
 #include <queue>
+#include <cassert>
 using namespace std;
 #define MAXN 1001
 string grid[MAXN];
 pair<int, int> par[MAXN][MAXN];
 int ans[MAXN][MAXN];
 bool vis[MAXN][MAXN]; //for bfs
+queue<pair<int, int> > q;
+int calls = 0;
+int N, M, K;
 
 int dx[4] = { 0, 1, 0, -1 };
 int dy[4] = { 1, 0, -1, 0 };
@@ -23,19 +27,21 @@ int dy[4] = { 1, 0, -1, 0 };
 pair<int, int> find(const pair<int, int> p)
 {
 	vis[p.first][p.second] = true;
+	calls++;
+	assert(p.first >= 0 && p.first < N && p.second >= 0 && p.second < M);
 	return par[p.first][p.second] = (par[p.first][p.second] == p ? p : find(par[p.first][p.second]));
 }
 
 int main() {
 	for (int t = 1; t <= 10; t++)
 	{
+		calls = 0;
 		ofstream cout(to_string(t) + ".out");
 		ifstream cin(to_string(t) + ".in");
 		memset(par, 0, sizeof par);
 		memset(vis, false, sizeof vis);
 		memset(ans, 0, sizeof ans);
 
-		int N, M, K;
 		cin >> N >> M >> K;
 
 		for (int i = 0; i < N; i++)
@@ -53,7 +59,8 @@ int main() {
 			par[--ax][--ay] = par[--bx][--by];
 		}
 
-		queue<pair<int, int> > q;
+		queue<pair<int, int> > q1;
+		q = q1;
 		q.push({ 0, 0 });
 		ans[0][0] = 0;
 		vis[0][0] = true;
@@ -78,6 +85,7 @@ int main() {
 					vis[end_pair.first][end_pair.second] = true;
 
 					q.push(end_pair);
+					assert(q.size() <= N * M);
 					ans[end_pair.first][end_pair.second] = ans[curr.first][curr.second] + 1;
 				}
 			}
