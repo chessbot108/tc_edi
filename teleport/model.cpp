@@ -17,6 +17,7 @@ string grid[MAXN];
 pair<int, int> par[MAXN][MAXN];
 int ans[MAXN][MAXN];
 bool vis[MAXN][MAXN]; //for bfs
+bool findvis[MAXN][MAXN];
 queue<pair<int, int> > q;
 int calls = 0;
 int N, M, K;
@@ -26,7 +27,10 @@ int dy[4] = { 1, 0, -1, 0 };
 
 pair<int, int> find(const pair<int, int> p)
 {
+	if (findvis[p.first][p.second])
+		ans[0][0] = 0;
 	vis[p.first][p.second] = true;
+	findvis[p.first][p.second] = true;
 	calls++;
 	assert(p.first >= 0 && p.first < N && p.second >= 0 && p.second < M);
 	return par[p.first][p.second] = (par[p.first][p.second] == p ? p : find(par[p.first][p.second]));
@@ -40,6 +44,7 @@ int main() {
 		ifstream cin(to_string(t) + ".in");
 		memset(par, 0, sizeof par);
 		memset(vis, false, sizeof vis);
+		memset(findvis, false, sizeof findvis);
 		memset(ans, 0, sizeof ans);
 
 		cin >> N >> M >> K;
@@ -79,6 +84,7 @@ int main() {
 				pair<int, int> end_pair;
 				if (newx >= 0 && newx < N && newy >= 0 && newy < M)
 					end_pair = find({ newx, newy });
+				memset(findvis, false, sizeof findvis);
 
 				if (newx >= 0 && newx < N && newy >= 0 && newy < M && grid[newx][newy] != '#' && !vis[end_pair.first][end_pair.second])
 				{
