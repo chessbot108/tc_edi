@@ -20,11 +20,11 @@ bool vis[MAXN][MAXN]; //for bfs
 int dx[4] = { 0, 1, 0, -1 };
 int dy[4] = { 1, 0, -1, 0 };
 
-pair<int, int> find(pair<int, int> p)
+pair<int, int> find(const pair<int, int> p)
 {
-	if (p.first > 1000)
+	if (p.second >= 1000 || p.first >= 1000)
 	{
-		p.first = 1000;
+		ans[0][0] = 0;
 	}
 	return par[p.first][p.second] = (par[p.first][p.second] == p ? p : find(par[p.first][p.second]));
 }
@@ -76,7 +76,7 @@ int main() {
 				int newx = curr.first + dx[d];
 				int newy = curr.second + dy[d];
 
-				pair<int, int> end_pair = find({ newx, newy });
+				pair<int, int> end_pair = par[newx][newy];
 				if (newx >= 0 && newx < N && newy >= 0 && newy < M && grid[newx][newy] != '#' && !vis[end_pair.first][end_pair.second])
 				{
 					vis[end_pair.first][end_pair.second] = true;
