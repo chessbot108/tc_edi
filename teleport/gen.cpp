@@ -33,7 +33,7 @@ int main() {
 	srand(time(NULL));
 	ofstream cout;
 
-	for (int i = 1; i <= NUM_CASES; i++)
+	for (int i = 9; i <= NUM_CASES; i++)
 	{
 		string format = ".in";
 		string test_data = "";
@@ -57,7 +57,7 @@ int main() {
 		{
 			N = rand(700, MAXN);
 			M = rand(700, MAXN);
-			K = rand(300000, min(N*M - 15000, MAXK));
+			K = rand(300000, min(N * M - 15000, MAXK));
 		}
 
 		vector<pair<int, int> > tel_in, tel_out;
@@ -65,46 +65,16 @@ int main() {
 		{
 			test_data += to_string(N) + " " + to_string(M) + " " + to_string(K) + "\n";
 
-			int cx = 0;
-			int cy = 0;
-			taken.insert({ cx, cy });
-			//create a path
-			for (int i = 0; i < M / 2; i++)
-			{
-				cy++;
-				taken.insert({ cx, cy });
-			}
-			for (int i = 0; i < N / 2; i++)
-			{
-				cx++;
-				taken.insert({ cx, cy });
-			}
-			while (cy > 0)
-			{
-				cy--;
-				taken.insert({ cx, cy });
-			}
-			while (cx < N - 1)
-			{
-				cx++;
-				taken.insert({ cx, cy });
-			}
-			while (cy < M - 1)
-			{
-				cy++;
-				taken.insert({ cx, cy });
-			}
-
 			for (int i = 0; i < N; i++)
 			{
 				for (int j = 0; j < M; j++)
 				{
 					par[{i, j}] = { i, j };
 					group[{ i, j }] = MAXN * i + j;
-					if (taken.count(make_pair(i, j)))
+					if (make_pair(i, j) == make_pair(0, 0) || make_pair(i, j) == make_pair(N - 1, M - 1))
 					{
 						test_data += ".";
-						tel_out.push_back({ i + 1, j + 1});
+						tel_out.push_back({ i + 1, j + 1 });
 					}
 					else if (rand(1, 100) <= WALL_PROB) test_data += "#";
 					else
@@ -121,13 +91,13 @@ int main() {
 
 			for (int i = 0; i < K; i++)
 			{
-				test_data += to_string(tel_in[i].first) + " " + to_string(tel_out[i].second) + " "; //tel start
-				if (i < 3*K / 4)
+				test_data += to_string(tel_in[i].first) + " " + to_string(tel_in[i].second) + " "; //tel start
+				if (i < 3 * K / 4)
 				{
-					test_data += to_string(tel_in[i + 1].first) + " " + to_string(tel_out[i + 1].second) + "\n";
+					test_data += to_string(tel_in[i + 1].first) + " " + to_string(tel_in[i + 1].second) + "\n";
 					par[tel_in[i]] = par[tel_in[i + 1]];
 				}
-				else  
+				else
 				{
 					pii out = tel_out[rand(0, tel_out.size() - 1)];
 					while (group[find(out)] == group[find(tel_in[i])])
