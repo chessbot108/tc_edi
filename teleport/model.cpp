@@ -76,9 +76,13 @@ int main() {
 				int newx = curr.first + dx[d];
 				int newy = curr.second + dy[d];
 
-				pair<int, int> end_pair = par[newx][newy];
+				pair<int, int> end_pair;
+				if (newx >= 0 && newx < N && newy >= 0 && newy < M)
+					end_pair = par[newx][newy];
+
 				if (newx >= 0 && newx < N && newy >= 0 && newy < M && grid[newx][newy] != '#' && !vis[end_pair.first][end_pair.second])
 				{
+					pair<int, int> end_pair = par[newx][newy];
 					vis[end_pair.first][end_pair.second] = true;
 
 					q.push(end_pair);
