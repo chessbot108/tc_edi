@@ -22,10 +22,7 @@ int dy[4] = { 1, 0, -1, 0 };
 
 pair<int, int> find(const pair<int, int> p)
 {
-	if (p.second >= 1000 || p.first >= 1000)
-	{
-		ans[0][0] = 0;
-	}
+	vis[p.first][p.second] = true;
 	return par[p.first][p.second] = (par[p.first][p.second] == p ? p : find(par[p.first][p.second]));
 }
 
@@ -55,10 +52,6 @@ int main() {
 
 			par[--ax][--ay] = par[--bx][--by];
 		}
-		
-		for (int i = 0; i < N; i++)
-			for (int j = 0; j < M; j++)
-				find({ i, j });
 
 		queue<pair<int, int> > q;
 		q.push({ 0, 0 });
@@ -78,7 +71,7 @@ int main() {
 
 				pair<int, int> end_pair;
 				if (newx >= 0 && newx < N && newy >= 0 && newy < M)
-					end_pair = par[newx][newy];
+					end_pair = find({ newx, newy });
 
 				if (newx >= 0 && newx < N && newy >= 0 && newy < M && grid[newx][newy] != '#' && !vis[end_pair.first][end_pair.second])
 				{
