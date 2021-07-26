@@ -18,30 +18,33 @@ typedef long long ll;
 
 const int maxn = 1e5 + 10;
 
-int n, x;
+int n;
+ll x;
 int t[maxn], r[maxn];
 
-bool check(int v) {
+bool check(ll v) {
     ll sum = 0;
     for (int i = 0; i < n; ++i) {
-        sum += max(0, v - t[i]) / r[i];
+        sum += max((ll)0, v - t[i]) / r[i];
         if (sum >= x) return true;
     }
     return false;
 }
 
 int main() {
-    freopen("9.in", "r", stdin);
-    freopen("9.out", "w", stdout);
-    scanf("%d%d", &n ,&x);
-    for (int i = 0; i < n; ++i) {
-        scanf("%d%d", &t[i], &r[i]);
+    for (int cs = 4; cs <= 10; ++cs) {
+        freopen((to_string(cs) + ".in").c_str(), "r", stdin);
+        freopen((to_string(cs) + ".out").c_str(), "w", stdout);
+        scanf("%d%lld", &n ,&x);
+        for (int i = 0; i < n; ++i) {
+            scanf("%d%d", &t[i], &r[i]);
+        }
+        ll l = 0, r = 2e15;
+        while (l + 1 < r) {
+            ll mid = (l + r) >> 1;
+            if (check(mid)) r = mid;
+            else l = mid;
+        }
+        printf("%lld", r);
     }
-    int l = 0, r = 2e9;
-    while (l + 1 < r) {
-        int mid = (l + r) >> 1;
-        if (check(mid)) r = mid;
-        else l = mid;
-    }
-    printf("%d", r);
 }
