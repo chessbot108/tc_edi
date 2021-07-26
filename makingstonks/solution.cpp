@@ -31,8 +31,8 @@ bool check(int v) {
 }
 
 int main() {
-    freopen("10.in", "r", stdin);
-    freopen("10.out", "w", stdout);
+    freopen("9.in", "r", stdin);
+    freopen("9.out", "w", stdout);
     scanf("%d%d", &n ,&x);
     for (int i = 0; i < n; ++i) {
         scanf("%d%d", &t[i], &r[i]);
