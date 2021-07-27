@@ -10,7 +10,7 @@ You will answer T testcases (1 <= T <= 5e5). There will then be T lines with one
 
 Output:
 
-You will output T lines, one line per testcase, the i'th line denoting the width of the i'th tree.
+You will output T lines, one line per testcase, the i'th line denoting the maximum width of the i'th tree across all possible roots.
 
 Sample input:
 
