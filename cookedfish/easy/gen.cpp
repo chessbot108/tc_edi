@@ -61,7 +61,7 @@ int main(){
 	fprintf(I, "%d\n", T);
 	while(T--){
 		int p = uid(1, 2);
-		int a = uid(1, 1e3/p);
+		int a = uid(1, 5e8/p);
 		while(!is_prime(a)){a++;}
 		fprintf(I, "%d %d\n", a*(1 << p), 1);
 	}
