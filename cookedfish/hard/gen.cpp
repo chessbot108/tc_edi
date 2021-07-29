@@ -49,25 +49,27 @@ char inp[20];
 
 int main(){
   cin.tie(0) -> sync_with_stdio(0);
-	int t; cin >> t;
+	int t, SED; cin >> t >> SED;
 	sprintf(inp, "%d.in", t);
+	mt19937_64 rng(SED);
 	freopen(inp, "w", stdout); //just makes t.in the output where t is inputted to the program
 
 	int a, b, c; cin >> a >> b >> c;
 	//a -> k=2, b -> k=3, c->k=1
 	
 	int T = 10; cout << T << "\n";
-
+	const ll nmm = 1e18;
 	for(int t = 0; t<T; t++){
 		int op = uid(0, a+b+c);
-		if(t%4 == 0){
+		if(t%4 == 5){
 			ll q = (ll)(rng()%(int)(1e8));
 			cout << q*q << " " << uid(2, 10) << "\n";
 		}else if(op <= a){
-			int a = uid(1e6, 2e6), b = a + uid(5e5, a);
+			int a = uid(1e6, 2e6), b = a + uid(1e6, a);
 			ll tot = 0;
-			for(int i = a; i<b && tot + ((ll)i*(ll)i) <= 1e16; i++) tot += (ll)i*(ll)i;
-			assert(tot <= (ll)(1e16));
+			for(int i = a; i<b && tot + ((ll)i*(ll)i) <= nmm; i++) tot += (ll)i*(ll)i;
+			if(t%4 != 0) tot++;
+			assert(tot <= (ll)(nmm));
 			cout << tot << " 2\n";
 		}else if(op <=a+b){
 			int k = uid(2, 20), a = uid(1, 6), b = a;
@@ -75,12 +77,12 @@ int main(){
 			for(int i = a;; i++){
 				ll p = 1;
 				for(int j = 0; j<k; j++){
-					if(p > 1e16/(ll)i){
+					if(p > nmm/(ll)i){
 						p = -1; break;
 					}		
 					p *= (ll)i;
 				}
-				if(tot + p <= 1e16 && p != -1){
+				if(tot + p <= nmm && p != -1){
 					tot += p;
 					b++;
 				}else{
