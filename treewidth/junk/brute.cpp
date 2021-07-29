@@ -1,78 +1,100 @@
-//gyrating cat enthusiast
+
 #include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
-#include <string>
-#include <utility>
 #include <cassert>
-#include <algorithm>
 #include <vector>
-#include <random>
-#include <chrono>
-#include <queue>
-#include <set>
-
-#define ll long long
-#define lb long double
-#define pii pair<int, int>
 #define pb push_back
-#define mp make_pair
-#define ins insert
-#define cont continue
-#define siz(vec) ((int)(vec.size()))
 
-#define LC(n) (((n) << 1) + 1)
-#define RC(n) (((n) << 1) + 2)
-#define init(arr, val) memset(arr, val, sizeof(arr))
-#define bckt(arr, val, sz) memset(arr, val, sizeof(arr[0]) * (sz+5))
-#define uid(a, b) uniform_int_distribution<int>(a, b)(rng)
-#define tern(a, b, c) ((a) ? (b) : (c))
-#define feq(a, b) (fabs(a - b) < eps)
-#define abs(x) tern((x) > 0, x, -(x))
-
-#define moo printf
-#define oom scanf
-#define mool puts("") 
-#define orz assert
-#define fll fflush(stdout)
-
-const lb eps = 1e-9;
-const ll mod = 1e9 + 7, ll_max = (ll)1e18;
-const int MX = 5e5 +10, int_max = 0x3f3f3f3f;
-
+const int MX = 5e5 +10;
 using namespace std;
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-int cnt[MX], ans = 0;
+int dep[MX]; //max distance leaf
+int cnt[MX], temp[MX]; //cnt and temp...
+int cpy[MX][50]; //my way of storing the answer
 vector<int> adj[MX];
+int n, U, D;
 
-void dfs(int u, int p, int d){
-	cnt[d]++;
-	ans = max(ans, cnt[d]);
+int ans = 0; //answer in a global counter
+
+int dfs1(int u, int p){ //compute dep
+	dep[u] = 0;
 	for(int v : adj[u]){
-		if(v != p) dfs(v, u, d+1);
+		if(v != p){
+			dep[u] = max(dep[u], dfs1(v, u) +1);
+		}
+	}
+	return dep[u]; //if u is a leaf, the dep[u] will still be 0
+}	
+
+void dfs2(int u, int p, int d){ //computing temp
+	temp[d]++;
+	for(int v : adj[u]){
+		if(v != p){
+			dfs2(v, u, d+1);
+		}
 	}
 }
 
+void dfs3(int u, int p, int d){ //actual answer finding
+	for(int i = 0; i<=dep[u]; i++){
+		cpy[i][d] = cnt[i]; //1. copying down the answer
+	}
+	for(int i = 0; i<=dep[u]; i++){
+		temp[i] = 0; //temp isnt all 0's from the previous use of it
+	}
+	dfs2(u, p, 0); //2. compute temp
+	if(u == 1){ 
+		for(int i = 0; i<=dep[u]; i++){ 
+			cnt[i] = temp[i]; //case when u is the root
+		}
+	}else{
+		for(int i = dep[u]; i >= 0; i--){
+			cnt[i] = (i > 0 ? cnt[i-1] : 0) + (temp[i] - ((i > 1) ? temp[i-2] : 0)); 
+			//3. recompute cnt
+		}
+	}
+	for(int i = 0; i<=dep[u]; i++){
+		if(ans < cnt[i]){
+			D = 1, U = u;
+			ans = cnt[i];
+		}else if(ans == cnt[i]){
+			D++;
+		}
+	}
+	for(int v : adj[u]){
+		if(v != p){
+			dfs3(v, u, d+1); //5. dfs again
+		}
+	}
+	for(int i = 0; i<=dep[u]; i++){
+		cnt[i] = cpy[i][d]; //6. restoring answer
+	}
+}
 
 int main(){
   cin.tie(0) -> sync_with_stdio(0);
-	int T; cin >> T;
+	int T;
+	T = 4e5+1;
+	//cin >> T;
 	while(T--){
-		int n; cin >> n;
-		for(int i = 0; i<=n; i++) adj[i].clear();
+		//cin >> n;
+		n = T;
+		ans = 0;
+		for(int i = 0; i<=n+1; i++){
+			cnt[i] = temp[i] = dep[i] = 0;
+			adj[i].clear();
+			for(int j = 0; j<50; j++) cpy[i][j] = 0;
+		}
 		for(int i = 1; i<n; i++){
-			int a = i+1, b = n%i +1;
+			int a = i, b = n%i;
+			a++, b++; //making the tree 1-based
 			adj[a].pb(b);
 			adj[b].pb(a);
-		}	
-		ans = 0;
-		for(int i = 1; i<=n; i++){
-			bckt(cnt, 0, n);
-			dfs(i, 0, 0);
 		}
-		cout << ans << "\n";
+		D = 0;
+		dfs1(1, 0);
+		dfs3(1, 0, 0);
+		if(D == 1 && U >= 500) 
+			cout << D << " " << U<< " " << n << " " << ans << endl;
 	}
 	return 0;
 }
