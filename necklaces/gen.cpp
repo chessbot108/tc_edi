@@ -6,8 +6,9 @@
 #include <random>
 #include <chrono>
 using namespace std;
-#define MAXN 100000
+#define MAXN 400000
 #define NUM_CASES 10
+#define R_INT 50
 int a[MAXN - 1];
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
@@ -44,23 +45,26 @@ int main() {
 		}
 		else
 		{
-			N = rand(50000, MAXN);
-			M = rand(50000, N - 1);
+			N = rand(100000, MAXN);
+			M = rand(100000, N - 1);
 		}
 
 		if (i != 1)
 		{
 			shuffle(a, a + N - 1, rng);
+			int inds[2] = { 1, N - 1 };
 			int ind = 0; //ind for where on random array we go to remove
 
 			test_data += to_string(N) + " " + to_string(M) + "\n";
 			for (int i = 0; i < M; i++)
 			{
 				string chars[2] = { "R", "Q" };
-				string type = chars[rand(0, 1)];
+				string type = (i % R_INT == R_INT - 1 ? chars[0] : chars[1]);
 				
 				int v = 0;
-				if (type == "R") v = a[ind++];
+				if (type == "R")
+					if (rand(0, 1) == 0) v = inds[0]++;
+					else v = inds[1]--;
 				else v = rand(1, N);
 				test_data += type + " " + to_string(v) + (i == M - 1 ? "" : "\n");
 			}
