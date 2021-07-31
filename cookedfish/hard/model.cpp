@@ -79,14 +79,16 @@ void k_2(){ //for when k = 2
 	ll a = -1, b = -1;
 	for(__int128 i = 1; s2 <= n; i++){
 		__int128 disc = (2ll * s1)*(2ll * s1) - (4ll * i * (s2 - n));
-		__int128 tmp = sq(disc);
-		__int128 A = (-(2ll * s1) + tmp);
-		//quadratic formula yayy
-		//moo("%lld %lld %lld %lld %lld\n", i, s1*2ll, s2 - n, disc, A);
-		if(!(tmp*tmp != disc || A%(i * 2ll) != 0)){
-			a = A/(i * 2ll);
-			b = a + i;
-			break;
+		if(disc%(i*i) == 0){
+			__int128 tmp = sq(disc);
+			__int128 A = (-(2ll * s1) + tmp);
+			//quadratic formula yayy
+			//moo("%lld %lld %lld %lld %lld\n", i, s1*2ll, s2 - n, disc, A);
+			if(!(tmp*tmp != disc || A%(i * 2ll) != 0)){
+				a = A/(i * 2ll);
+				b = a + i;
+				break;
+			}
 		}
 		s1 += i;
 		s2 += i*i;
