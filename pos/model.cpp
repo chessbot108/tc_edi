@@ -1,8 +1,7 @@
-Note that the only time there are multiple different ways to index the sorted list is when a number appears multiple times. If the frequency of a number 'n' in a list is c, then the number of ways that number can be indexed is c! since there are c different indicies to be distrubited. The answer is then just the product of c! over all n. We can precompute the factorials and frequencies in O(N) time, and thus the complexity is linear.
-
 #include <iostream>
 #include <fstream>
 #include <memory.h>
+#include <string>
 using namespace std;
 #define MAXN 1000001
 #define MOD 1000000007
@@ -11,18 +10,19 @@ long long fact[MAXN];
 int freq[MAXN];
 
 int main() {
-	ifstream cin("pos.txt");
-
 	int N;
 	cin >> N;
 
 	for (int i = 0; i < N; i++)
 	{
+		string s;
+		cin >> s;
 		cin >> A[i];
 		freq[A[i]]++;
 	}
 
 	fact[0] = 1;
+	//precompute factorials
 	for (long long i = 1; i < MAXN; i++)
 	{
 		fact[i] = fact[i - 1] * i;
@@ -31,7 +31,10 @@ int main() {
 
 	long long ans = 1;
 	for (int i = 0; i < MAXN; i++)
+	{
 		ans *= fact[freq[i]];
+		ans %= MOD;
+	}
 
 	cout << ans << "\n";
 	return 0;
