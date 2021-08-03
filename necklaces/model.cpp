@@ -6,12 +6,7 @@
 using namespace std;
 #define MAXN 400001
 
-//simplest verison, only calc num elements in link, NlogN cuz sets, could be O(n*inv_ack) dsu easy
-
 int main() {
-	ifstream cin(to_string(t) + ".in");
-	ofstream cout(to_string(t) + ".out");
-
 	int N, M;
 	cin >> N >> M;
 
@@ -27,8 +22,8 @@ int main() {
 
 		if (c == 'R')
 		{
-			b.insert(-a);
-			e.insert(a);
+				b.insert(-a); //insert negatives to get largest val smaller
+				e.insert(a);
 		}
 
 		if (c == 'Q')
@@ -36,4 +31,3 @@ int main() {
 	}
 	return 0;
 }
-
