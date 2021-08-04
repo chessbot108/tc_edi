@@ -8,4 +8,4 @@ Look at another edge $e$ not in $m$; note that the shortest path from $1$ to $N%
 
 We must iterate through all the edges not on $m$, and get the $IOD$ for each edge along with the minimum path length to go through that edge from $1$ to $N$. To get the minimum length of a path not using an edge $f$ in path $m$, we must query for each edge $e$ not in $m$ which has an $IOD$ containing $f$ (i.e. the path through $e$ doesn't use edge $f$). Iterating through each edge and checking its $IOD$ is obviously too slow, so we use a segment tree or a set to store all this information. Each update will be a range and specify a minimum path length over that $IOD$. We will then have point queries, where we look at each interval and see if it includes the queried edge, and get the minimum of them. We do this with every edge on $m$.
 
-Updating and checking the $IOD$ is $logN$ per edge and there are at most $M$ operations per binary search, the complexity is &Nlog^2(N) + Mlog^2(N)&.
+Updating and checking the $IOD$ is $logN$ per edge and there are at most $M$ operations per binary search, the complexity is $Nlog^2(N) + Mlog^2(N)$.
