@@ -1,6 +1,6 @@
 # Tree Width Editorial
 
-Note: I probably overestimated the difficulty of this problem. I made a solution that ran in $O(n \cdot tree\ depth)$​​ that might have used linear memory if i changed it. Most submissions ran in $O(n \cdot tree\ depth)$​​​ memory as well as time. I didn't realize it was so much easier to implement using a bottom up method if you could store the entire dp table with mle.
+Note: I probably overestimated the difficulty of this problem. I made a solution that ran in $O(n \cdot tree\ depth)$ that might have used linear memory if i changed it. Most submissions ran in $O(n \cdot tree\ depth)$ memory as well as time. I didn't realize it was so much easier to implement using a bottom up method if you could store the entire dp table without mle.
 
 
 
@@ -16,7 +16,7 @@ Now let's define $temp[i][j]$ as the amount of nodes in node $i$'s subtree. (Not
 
 $par[i]$ is the parent of node $i$, parent of the root is undefined.
 
-$dep[i]$​ is the depth of node $i$​, $dep[0]$​ = $0$​.
+$dep[i]$ is the depth of node $i$, $dep[0]$ = $0$.
 
 ## solution
 
@@ -31,7 +31,7 @@ Note that in this equation if ever you access a negative index, it is just $0$.
 So in words, the amount of nodes distance $j$ away from node $i$ is
 
 1. the amount of nodes distance $j - 1$ from the parent of $i$. This is the amount of nodes up the tree that contribute to the answer. Note this overcounts since there are also some nodes with distance $j - 1$ from $par[i]$ within $i's$ subtree. We will handle the overcount in case 3
-2. the amount of nodes distance $j$ from node $i$ in $i's$​ subtree. This is the contribution down the tree on in $i's$ subtree.
+2. the amount of nodes distance $j$ from node $i$ in $i's$ subtree. This is the contribution down the tree on in $i's$ subtree.
 3. subtract the amount of of nodes in $i's$ subtree distance $j - 2$ from node $i$. These are the nodes that are overcounted in case 1. Since these nodes have distance $j - 1$ from $par[i]$ but do not have distance $j$ from node $i$. 
 
 The answer is then $\max(cnt[i][j])$ over all $i$ and all $j$. 
