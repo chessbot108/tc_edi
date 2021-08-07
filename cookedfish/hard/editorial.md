@@ -28,7 +28,7 @@ So we know that $2n$ has an odd and an even factor since the parity of $k$ and $
 
 ## $k = 2$
 
-Let's use our idea for the easy version here. So for a valid answer $(a, b)$ we have $n = \sum_{i = a}^{b - 1} i^2$​. If we define the sum of integers from $[0, i]$ as $sum(i)$ and the sum of squares from $[0, i]$ as $sumsq(i)$, we can start simplifying
+Let's use our idea for the easy version here. So for a valid answer $(a, b)$ we have $n = \sum_{i = a}^{b - 1} i^2$. If we define the sum of integers from $[0, i]$ as $sum(i)$ and the sum of squares from $[0, i]$ as $sumsq(i)$, we can start simplifying
 $$
 n = \sum_{i = a}^{b - 1} i^2 = \sum_{i = 0}^{b - a - 1} (a + i)^2 = \sum_{i = 0}^{b - a - 1} a^2 + 2ai + i^2 = (b - a) \cdot a^2 + \sum_{i = 0}^{b - a - 1} 2ai + i^2 = (b - a) \cdot a^2 + 2\cdot a\cdot sum(b - a -1) + sumsq(b - a - 1)
 $$
@@ -40,7 +40,7 @@ Now believe it or not, we can make a quadratic such that when give $n$ and $b - 
 $$
 (b -a) \cdot a^2 + (2 \cdot sum(b - a - 1)) \cdot a + (sumsq(b - a- 1) - n) = 0
 $$
-Now we can plug it into the quadratic formula and use $(b - a)$ and $n$​ to solve for $a$.
+Now we can plug it into the quadratic formula and use $(b - a)$ and $n$ to solve for $a$.
 $$
 a = \frac{-(2\cdot sum(b - a - 1) \pm \sqrt{(2\cdot sum(b - a - 1)^2 - (4)(b - a)(sumsq(b - a - 1) - n))})}{2 \cdot(b - a)}
 $$
