@@ -32,19 +32,16 @@ bool check(ll v) {
 }
 
 int main() {
-    for (int cs = 4; cs <= 10; ++cs) {
-        freopen((to_string(cs) + ".in").c_str(), "r", stdin);
-        freopen((to_string(cs) + ".out").c_str(), "w", stdout);
-        scanf("%d%lld", &n ,&x);
-        for (int i = 0; i < n; ++i) {
-            scanf("%d%d", &t[i], &r[i]);
-        }
-        ll l = 0, r = 2e15;
-        while (l + 1 < r) {
-            ll mid = (l + r) >> 1;
-            if (check(mid)) r = mid;
-            else l = mid;
-        }
-        printf("%lld", r);
+    scanf("%d%lld", &n ,&x);
+		for (int i = 0; i < n; ++i) {
+				scanf("%d%d", &t[i], &r[i]);
+		}
+    ll l = 0, r = 2e15;
+    while (l + 1 < r) {
+        ll mid = (l + r) >> 1;
+			  if (check(mid)) r = mid;
+        else l = mid;
     }
+    printf("%lld", r);
+		return 0;
 }
