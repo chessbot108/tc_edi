@@ -1,0 +1,26 @@
+Ryan is a bookworm. He has many books on his shelf, and he wants to sort them by alphabetical order. Furthermore, he wants to sort the books that have the same starting letter by their published years, from oldest to most recent. Note that all the book titles are one word.
+
+Input: 
+
+The first line has an integer 1 < N < 1000, representing the number of books Ryan has on his shelf.
+The next N lines contain M and N, where M is the name of the book and N is the publish year.
+
+Output: 
+
+Print the final sorted bookshelf, with the name of each book on a separate line.
+
+Sample Input:
+
+4
+Harry 1987
+Orange 1776
+Hotels 1973
+Moon 2018
+
+Sample Output:
+
+
+Hotels
+Harry
+Moon
+Orange
