@@ -1,0 +1,1 @@
+The algorithm to this problem is pretty simple. All you need to do is to first sort the list of books by alphabetical order first. Then, within the groups of books with the same first letter, you sort them by the year they were published, from the oldest to most recent.
