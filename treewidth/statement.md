@@ -1,0 +1,45 @@
+# Tree Width
+
+## statement
+Peach and Goma were playing with trees, and Peach had a new idea. Note, all trees will be $0$-based, or all nodes of a tree with $n$ vertices will be [$0$, $n$). She defined the width of a rooted tree as the maximum number of nodes that have the same depth from the root. Consider the tree $(0, 1)$, $(1, 2)$, $(2, 3)$, $(1, 4)$. The width of the tree rooted at node $0$ is $2$, (nodes $2$ and $4$ having a distance of $2$ away). However, the width of the same tree rooted at node $1$ has a width of $3$, (nodes $0$, $2$, and $4$ having a distance of $1$ away). Peach asked Goma to find the maximum width of a tree with $n$ nodes $(1 \leq n \leq 5 \cdot 10^{5})$ across all possible roots.
+
+However, chessbot (the problemsetter), is lazy and decided to give you trees as input with the following format. A modtree with $n$ nodes is a tree defined by an integer $n$. For all nodes $i$ [$1$, $n$) there is an edge between $i$ and $n \mod i$. It can be proven that for all $n$, the modtree size $n$ will be connected and satisfy all the properties of a tree. Note $n \mod i$ is not $i \mod n$ and that the tree is labeled $0$-based.
+
+A tree with $4$ nodes will have edges, $(1, 0)$, $(2, 0)$, $(3, 1)$.
+
+## Input description
+
+You will answer $T$ testcases $(1 \leq T \leq 5 \cdot 10^{5})$. There will then be $T$ lines with one testcase each. The $i$th testcase consists of a single integer $n$ $(1 \leq n \leq 5 \cdot 10^{5})$, the number of nodes on the modtree. It is guaranteed that the sum of $n$ will not exceed $5 \cdot 10^{5}$.
+
+## Output description
+
+You will output $T$ lines, one line per testcase, the $i$th line denoting the maximum width of the $i$th tree across all possible roots.
+
+## Sample input
+
+```
+3
+4
+5
+100
+```
+
+## Sample output
+2
+3
+37
+
+## Sample explanation
+
+The edges of the first tree (size $4$) are described in the latter half of the problem statement, and the width cannot be larger than $2$. Rooting the tree at node $1$, for instance, will give a width of $2$ (nodes $0$ and $2$ being distance $1$ away).
+
+The second testcase was also described in the problem statement, rooting the tree at node $1$ will give a width of $3$.
+
+Due to the difficulty of drawing a tree with $100$ nodes, proving the third sample input will remain an exercise to the reader.
+
+## notes
+Problem idea: chessbot
+Problem preparation: chessbot
+TL: 2 seconds
+ML: 256 mb
+Occurances: Intermediate 13, Advanced 8

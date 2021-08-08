@@ -29,7 +29,7 @@ case 4: find the ch for all cases $a$ is on the first ring, and you don't have t
 
 
 
-The total complexity is $O(n\log n + \log^3 n \cdot \log\log n + q \log n)$​. $n \log n$ from finding the first three rings and the ch of the entire array, $\log^3 n \cdot \log \log n$ since there are $\log n \cdot \log n$ ways to pick one point from the first ring and one from the first/second rings and $\log n \cdot \log \log n$ time to find the ch, and $q \log n$ for the queries (binary search to find whether or not a point is in a ring), $q$ is doable. Colin Galen also noted that with the three rings idea, you can just find the ch each time for a total of $q$ times, and since you dont have to sort the points repeatedly, $O(q \log n)$ is doable.
+The total complexity is $O(n\log n + \log^3 n \cdot \log\log n + q \log n)$. $n \log n$ from finding the first three rings and the ch of the entire array, $\log^3 n \cdot \log \log n$ since there are $\log n \cdot \log n$ ways to pick one point from the first ring and one from the first/second rings and $\log n \cdot \log \log n$ time to find the ch, and $q \log n$ for the queries (binary search to find whether or not a point is in a ring), $q$ is doable. Colin Galen also noted that with the three rings idea, you can just find the ch each time for a total of $q$ times, and since you dont have to sort the points repeatedly, $O(q \log n)$ is doable.
 
 
 
