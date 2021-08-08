@@ -1,0 +1,28 @@
+Formal:
+You are given an array A of N integers (A[i]  and N <= 1e5).
+In one move you can pick a random i in the array such that A[i] != 0. Also pick a random number from 1 to K (2 <= K <= 1e5). Then set A[i] = floor(A[i]/k).
+The expected number of moves for the array to be all 0’s can be expressed as p/q. Return p*q^-1 modulo 1e9 + 7.
+
+Final:
+Rengoku is battling a powerful demon! This demon has $N (1 \leq N \leq 10^5)$ hearts where the $i$th heart has health $H_i (1 \leq H_i \leq N)$. Luckily for Rengoku, he practices Flame Breathing and knows $K (2 \leq K \leq 2 \cdot 10^5)$ different forms. In one attack, he picks a random heart $i$ such that $H_i > 0$ and also picks a random form $F$ from $1$ to $K$. Then he uses the $F$th form on the $i$th heart, reducing its health to $\lfloor \frac{H_i}{F} \rfloor$ (floor division). The demon is slain after the health of all its hearts drops to $0$. As Rengoku’s kouhai, he assigns you the task of finding the expected number of attacks he will use to slay the demon.
+
+Input:
+The first line contains one integer, $T (1 \leq T \leq 10^5)$, the number of test cases. Then $T$ test cases follow.
+
+The first line of each test case contains two integers, $N, K$.
+
+The second line of each test case contains $N$ integers, $H_1, H_2, … , H_N$.
+
+It is guaranteed that the sum of $N$ over all test cases does not exceed $10^5$.
+
+Output:
+The expected number of attacks Rengoku will use to slay the demon for each test case can be expressed as a fraction $\frac{P}{Q}$. For each test case, output $P \cdot Q^{-1}$ modulo $10^9+7$. $Q^{-1}$ is the modular inverse of $Q$, so $Q \cdot Q^{-1} \equiv 1 \mod 10^9+7$.
+
+Sample Explanation:
+For the first test case, the demon has a single heart with health $1$. There is a $ \frac{1}{2} $ chance that Rengoku uses his $2$nd form and reduces the demon's health to $ \lfloor \frac{1}{2} \rfloor = 0 $. There is also a $ \frac{1}{2} $ chance that Rengoku uses his $1$st form and the demon's health is not affected because it changes to $\lfloor \frac{1}{1} \rfloor = 1$. It may take Rengoku many attacks because he might repeatedly pick the $1$st form. It turns out that the answer is $3$.
+
+For the third test case, the expected attacks is $\frac{27}{4}$. Since $27 \cdot 4^{-1} \equiv 27 \cdot 250000002 \equiv 750000012 \mod 10^9 + 7$, the answer is $750000012$.
+
+Image:
+https://cdn.discordapp.com/attachments/742604968573272158/869238780924674169/unknown.png
+
