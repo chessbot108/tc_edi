@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include <cstring>
 using namespace std;
 #define MAXN 100001
 
