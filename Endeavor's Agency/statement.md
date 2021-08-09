@@ -56,12 +56,28 @@ For each test case, output the minimal number of offices to build such that Japa
 
 
 ## Explanation
-There is an image in the same directory on the git.
-The first testcase is not the sample...
+For the images, go to ./Junk/Statement
+Here’s the country from first test case:
+
+1.png
+
+In the first test case, there is only a single city, so no offices need to be added. The answer is $0$.
+
+Here’s the country from second test case:
+
+2.png
+
+In the second test case, there are $3$ cities and $1$ road. A road connects city $2$ to city $3$. To minimize the offices built, Endeavor can build an office in either city $2$ or city $3$. The answer is $1$.
+
+Here’s the country from third test case:
+
+3.png
+
+In the third test case, there are $4$ cities and $3$ roads. There is a road that connects city $3$ to city $1$, a road that connects city $4$ to city $2$, and a road that connects city $2$ to city $3$. To minimize the offices built, one solution is for Endeavor to build an office in city $1$ and city $2$. Of course, building offices in cities $(1,2), \, (3,2),$ or $(3,4)$ all work to achieve the minimal number of offices. The answer is $2$.
 
 
-## Notes
-Problem idea: codicon/PurpleCrayon
+## notes
+Problem idea: codicon
 Problem preparation: codicon
 TL: 2 seconds
 ML: 256 mb
