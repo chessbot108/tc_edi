@@ -1,3 +1,4 @@
+
 Consider a graph where there is an edge $i \rightarrow j$ if $j$ is a child of $i$. The singularity project is successful if the final graph of events is a line. There are an exponential number of ways we can create this line, so we are motivated to use dynamic programming. 
 
 
@@ -19,4 +20,3 @@ Does this sound familiar? Well, we can use a segment tree with lazy propagation 
 
 
 Time complexity: $O(N \cdot log(N))$.
-
