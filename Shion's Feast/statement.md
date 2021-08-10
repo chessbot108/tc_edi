@@ -42,7 +42,11 @@ For the second test case, $B$ can be $1, \, 2, \, 3,$ or $4$. $B=3$ gives tastin
 
 ## notes
 Problem idea: codicon
+
 Problem preparation: codicon
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 13, Intermediate 8, Advanced 3 
