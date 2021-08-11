@@ -31,8 +31,12 @@ orange
 ## sample explanation
 
 ## notes
-Problem idea: Sol
-Problem preparation: Sol
+Problem idea: Spark
+
+Problem preparation: Spark
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 6
