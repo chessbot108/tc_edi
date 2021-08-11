@@ -30,8 +30,13 @@ ABBCCCBAB
 If Elijah plays $BBBBCCCBB$, he gets a point on every turn except the first one.
 
 ## notes
+
 Problem idea: Bossologist/PurpleCrayon
+
 Problem preparation: Bossologist
+
 TL: 2 seconds
+
 ML: 256 mb
+
 Occurances: Novice 15, Intermediate 10, Advanced 5
