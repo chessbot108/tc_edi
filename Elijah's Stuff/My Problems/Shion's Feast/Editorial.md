@@ -4,7 +4,7 @@ Let $MX$​​​ be the maximum number in the array. Realize that $MX$​​​
 
 Therefore, we add $B = K \cdot MX-1$​​ if $MX$​​ is not $1$​​ otherwise we add $B = K \cdot MX$​​​. 
 
-
+UwU
 
 Time complexity: $O(N)$​​
 
