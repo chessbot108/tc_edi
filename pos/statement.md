@@ -42,7 +42,11 @@ Average, ABCs, Costs, Teleport, Ordering, Books, Multiples, Premins, and P=NP.
 
 ## notes
 Problem idea: Bossologist
+
 Problem preparation: Bossologist
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 8, Intermediate 5

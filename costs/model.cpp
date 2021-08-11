@@ -33,7 +33,7 @@ int main(){
 		cnt[arr[i]]++;
 	}
 	for(int i = 0; i<n; i++){
-		if(cnt[arr[i]] > cnt[mode]){
+		if(cnt[arr[i]] > cnt[mode] || (cnt[arr[i]] == cnt[mode] && arr[i] > mode)){
 			mode = arr[i];
 		}
 	}

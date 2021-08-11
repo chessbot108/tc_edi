@@ -5,6 +5,7 @@
 #include <queue>
 #include <set>
 #include <cassert>
+#include <cstring>
 using namespace std;
 #define MAXN 1001
 string grid[MAXN];

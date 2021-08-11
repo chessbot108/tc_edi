@@ -35,7 +35,11 @@ The first person is hired at time 1 and makes 1 dollar at every interval, at tim
 
 ## notes
 Problem idea: Mantlemoose
+
 Problem preparation: Mantlemoose
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Easy 10, Intermediate 3
