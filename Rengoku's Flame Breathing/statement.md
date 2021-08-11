@@ -62,6 +62,6 @@ Problem preparation: codicon
 
 TL: 2 seconds
 
-ML: 2 seconds
+ML: 256mb
 
 Occurances: Advanced 11
