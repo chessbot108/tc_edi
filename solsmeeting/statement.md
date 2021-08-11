@@ -38,7 +38,11 @@ If the logistics team wasn't in the way, then Sol could go $1 \rightarrow 2 \rig
 
 ## notes
 Problem idea: Bossologist/PurpleCrayon
+
 Problem preparation: Bossologist/codicon
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Advanced 14
