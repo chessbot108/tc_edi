@@ -48,7 +48,11 @@ Two beads share the same string as bead 6, and bead 2 is the only bead on the st
 
 ## notes
 Problem idea: Bossologist
+
 Problem preparation: Bossologist
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 9, Intermediate 6, Advanced 1
