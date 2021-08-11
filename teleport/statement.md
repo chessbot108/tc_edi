@@ -40,7 +40,11 @@ Chessbot can move once right to go into the teleporter at $(1, 2)$, which will s
 
 ## notes
 Problem idea: Bossologist
+
 Problem preparation: Bossologist/codicon
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 14, Intermediate 9, Advanced 4
