@@ -32,7 +32,11 @@ In the second testcase, it can be proven that Goma can only pick up $3$ flowers 
 
 ## notes
 Problem idea: chessbot
+
 Problem preparation: chessbot
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 3
