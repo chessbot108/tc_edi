@@ -36,19 +36,23 @@ For each query, output the minimum beauty value of the portion of the grid from 
 ## sample explanation
 In the first query, the part of the lawn that Chessbot is interested in is
 
-$2 3$
+2 3
 
-$3 2$
+3 2
 
-$5 6$
+5 6
 
-$9 6$
+9 6
 
 The minimum beauty value in this section is $2$.
 
 ## notes
 Problem idea: Bossologist
+
 Problem preparation: Bossologist
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 11, Intermediate 4
