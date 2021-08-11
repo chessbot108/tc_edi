@@ -45,7 +45,11 @@ For $n = 54$, $(2, 11)$, $(12, 16)$ and $(17, 20)$ are all solutions.
 
 ## notes
 Problem idea: chessbot
+
 Problem preparation: chessbot
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 12, Intermediate 7, Advanced 2
