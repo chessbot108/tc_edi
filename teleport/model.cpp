@@ -95,8 +95,8 @@ int main() {
 				ans[end_pair.first][end_pair.second] = ans[curr.first][curr.second] + 1;
 			}
 		}
-
-		cout << ans[N - 1][M - 1] << "\n";
 	}
+	
+	cout << ans[N - 1][M - 1] << "\n";
 	return 0;
 }
