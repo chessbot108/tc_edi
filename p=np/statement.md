@@ -30,7 +30,11 @@ The valid pairs of $(N, P)$ are $(0, 0)$, $(1, 0)$, $(1, 1)$, $(1, 2)$, and $(2,
 
 ## notes
 Problem idea: chessbot
+
 Problem preparation: chessbot
+
 TL: 2 seconds
+
 ML: 256mb
+
 Occurances: Novice 1, Intermediate 1
